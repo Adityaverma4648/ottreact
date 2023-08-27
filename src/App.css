@@ -1,0 +1,44 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.glassMorphismNavbar{
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(2rem);
+  transition: all 0.6s ease-in-out;
+}
+
+#shortContainer::-webkit-scrollbar ,#leftLeftContent::-webkit-scrollbar {
+   display: none;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: brown
+}
+::-webkit-scrollbar-track{
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+.animate-shake{
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+/*  animation */
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
