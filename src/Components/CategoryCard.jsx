@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 const CategoryCard = (props) => {
   return (
-    <div className="lg:w-64 w-64 h-40 mx-1 relative flex justify-center items-center overflow-hidden rounded-lg">
+    <div className="lg:w-64 w-64 h-40 mx-1 relative flex justify-center items-center overflow-hidden rounded-lg cursor-pointer">
       <div className="w-full h-full flex justify-center items-center absolute z-10">
         <div className="w-full h-full p-1 absolute flex justify-center items-center">
-          <div className="w-full h-full flex justify-center items-center bg-black/40 absolute"></div>
           <div className=" w-full h-full flex justify-center items-center">
             <img
               className="w-full h-full rounded-lg"

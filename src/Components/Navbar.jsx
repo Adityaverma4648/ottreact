@@ -9,8 +9,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/AuthSlice";
 import { fetchApi } from "../utils/api";
-import { setLanguages } from "../redux/ProviderSlice";
-import {clearWatchLater , clearSaved } from "../redux/SavedWatchSlice.js"
+import { getLanguages } from "../redux/ProviderSlice";
+import { clearWatchLater, clearSaved } from "../redux/SavedWatchSlice";
+import { setAppLanguage } from "../redux/AppSlice";
 
 import Loader from "./Loader";
 
@@ -18,6 +19,11 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(false);
+  const [language, setLanguage] = useState({
+    iso_639_1: "en",
+    english_name: "English",
+    name: "English",
+  });
 
   const { languages } = useSelector((state) => state.provider);
 
@@ -27,7 +33,7 @@ const Navbar = () => {
 
   useEffect(() => {
     fetchApi("/configuration/languages").then((res) => {
-      dispatch(setLanguages(res));
+      dispatch(getLanguages(res));
     });
   }, [dispatch]);
 
@@ -60,6 +66,9 @@ const Navbar = () => {
     }
   }, [visible]);
 
+  useEffect(() => {
+    dispatch(setAppLanguage(language));
+  }, [language, dispatch]);
 
   const handleLogOut = (e) => {
     e.preventDefault();
@@ -70,7 +79,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="w-screen h-20 z-50 flex justify-center items-center fixed top-0 transition-all ease-linear delay-100"
+      className={`w-screen h-20 z-50 flex justify-center items-center fixed top-0 transition-all delay-200 ease-in-out ${visible ? "backdrop-blur-md" : "backdrop-blur-0" } hover:backdrop-blur-md`}
       id="Navbar"
     >
       <div className="lg:w-10/12 md:w-11/12 w-full h-full flex justify-between items-center px-4 text-white bg-transparent">
@@ -81,9 +90,17 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="  lg:flex justify-evenly items-center hidden list-none text-sm">
+          <div className="w-1/2 lg:flex justify-evenly items-center hidden list-none text-sm">
             <li className="mx-4">
               <Link to="/home">Home</Link>
+            </li>
+
+            <li className="mx-4">
+              <Link to="/search">Search</Link>
+            </li>
+
+            <li className="mx-4">
+              <Link to="/watchlater">WatchLater</Link>
             </li>
 
             <li className="mx-4">
@@ -93,37 +110,40 @@ const Navbar = () => {
             <li className="mx-4">
               <Link to="/saved">Saved</Link>
             </li>
-
-            <li className="mx-4">
-              <Link to="/watchlater">WatchLater</Link>
-            </li>
           </div>
         </div>
 
         <div className="flex flex-row">
           <input
-            className="border border-white text-white bg-transparent rounded-lg p-2"
+            className="border border-white text-white bg-transparent rounded-lg p-2 outline-none select-none placeholder-white"
             placeholder="Search Movies, Shows..."
             onChange={(e) => {
-              if (e.key === "Enter")
-                navigate("/search", { data: e.target.value });
+              navigate("/search", { data: e.target.value });
             }}
           ></input>
 
           <div className="flex flex-row ms-2 justify-center items-center cursor-pointer">
-                <div className="md:flex flex-col justify-center items-center hidden">
-                <FaLanguage />
-                <select
-                  name="languages"
-                  id="languages"
-                  className="w-24 bg-transparent text-sm mx-2 flex flex-col justify-center items-center select-none outline-none"
-                >
-                  {languages.slice(1,languages.length).map((d,index)=>{
-                           return <option className="text-black p-2" key={index} value={d.english_name} >{d.english_name}({d.iso_639_1})</option>
+            <div className="md:flex flex-col justify-center items-center hidden">
+              <FaLanguage />
+              <select
+                name="languages"
+                id="languages"
+                className="w-24 bg-transparent text-sm mx-2 flex flex-col justify-center items-center select-none outline-none cursor-pointer"
+                onChange={(e) => {
+                  setLanguage(e.target.value);
+                }}
+              >
+                {languages &&
+                  languages?.map((d, index) => {
+                    return (
+                      <option className="text-black p-2" key={index} value={d}>
+                        {d.english_name}({d.iso_639_1})
+                      </option>
+                    );
                   })}
-                </select>
-                </div>
-            
+              </select>
+            </div>
+
             {userInfo && userToken ? (
               <div className="flex flex-row justify-center items-center">
                 <Link

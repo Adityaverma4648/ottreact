@@ -1,11 +1,16 @@
 import React, { useRef , useState ,useEffect } from 'react';
 import {Link} from "react-router-dom";
 
+import { useDispatch , useSelector } from 'react-redux';
+``
 // importing Component
 import CategoryCard from "./CategoryCard";
 
 // importing Pictures
 import categoryPic from "../assets/PAYOFF_EXAMPLES_01.jpg"; 
+import Loader from './Loader';
+import { fetchApi } from '../utils/api';
+import {getGenre} from "../redux/ProviderSlice";
 
 function DraggableCarousel(props){
   const slider = useRef(null);
@@ -70,7 +75,7 @@ function DraggableCarousel(props){
     }
 
 return (
-  <div className='md:w-full w-11/12 md:h-full h-full flex justify-start items-center overflow-hidden relative scroll-smooth ' onMouseEnter={mouseEnter} onMouseLeave={mouseOut}  ref={slider} id='carousel2' >
+  <div className='md:w-full w-11/12 md:h-full h-full flex justify-start items-center overflow-hidden relative scroll-smooth ' onMouseEnter={mouseEnter} onMouseLeave={mouseOut}  ref={slider} id='caraousel1' >
       {props.children}
    </div>
 )
@@ -83,26 +88,24 @@ export default function Category({isAdmin}){
         var modal = document.getElementById('categoryModal');
         modal.classList.toggle("hidden")
     }
-    const category = [
-      {id : 1, title : "adventure", fileUrl : categoryPic },
-      {id : 2, title : "thriller", fileUrl : categoryPic },
-      {id : 3, title : "crime", fileUrl : categoryPic },
-      {id : 4, title : "fantasy", fileUrl : categoryPic },
-      {id : 5, title : "action", fileUrl : categoryPic },
-      {id : 6, title : "drama", fileUrl : categoryPic },
-      {id : 7, title : "comedy", fileUrl : categoryPic },
-      {id : 8, title : "horror", fileUrl : categoryPic },
-      {id : 9, title : "Sci-fi", fileUrl : categoryPic },
-      {id : 10, title : "biography", fileUrl : categoryPic }
-    ];
+  
+     
+    const {loading , genre} = useSelector((state)=>state.provider);
+    const dispatch = useDispatch();
 
+    useEffect(()=>{
 
+       fetchApi(`/genre/movie/list?language=en`).then((res)=>{
+          dispatch(getGenre(res));
+       })
+    },[dispatch])
+   
 
   return (
     <div className="flex flex-col justify-center items-center relative p-2 " style={{height : "250px"}} >
       <div className="w-full relative z-30 flex justify-between items-center">
         <div className="w-full flex justify-start items-center text-lg p-2">
-          Explore BY Genre
+          Explore By Genre
         </div>
 
         {isAdmin && <button
@@ -115,22 +118,18 @@ export default function Category({isAdmin}){
       </div>
 
       <div className="w-full h-full flex justify-center items-center">
-       
-      
-
         <DraggableCarousel className=""
           id="categoryContainer"
         >
           <div className="md:w-screen w-{200vw} h-11/12 flex justify-start items-center relative transition-all ease-linear delay-500 scroll-smooth">
-            {category?.map((d) => {
-              var path = `/category/${d.id}`;
+            {loading ? <Loader /> : genre.genres?.map((d , index) => {
               return (
                 <Link
-                  to={path}
-                  key={d.id}
-                  className="h-5/6 flex justify-center items-center"
+                  to={`/genre/${d.id}`}
+                  key={index}
+                  className="h-5/6 flex justify-center items-center cursor-pointer"
                 >
-                  <CategoryCard id={d.id} title={d.title} fileUrl={d.fileUrl} />
+                  <CategoryCard id={d.id} title={d.name} fileUrl={categoryPic} />
                 </Link>
               );
             })}

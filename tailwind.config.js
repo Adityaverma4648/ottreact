@@ -4,6 +4,11 @@ export default {
   "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
     extend: {
+ 
+      width: {
+        '120': '120vw',
+      },
+
        blackBG : "bg-black",
        darkBG : "bg-slate-900",
        whiteTEXT : "text-white",

@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 // importing fetchApi
 import{fetchApi} from "../utils/api";
 
 //  importing redux
 import {useDispatch , useSelector} from "react-redux";
-import {setMovies , setPeople , setSeries} from "../redux/popularSlice";
+import {getMovies , getPeople } from "../redux/popularSlice";
 
 
 //  importing components
@@ -70,38 +70,32 @@ function DraggableCarousel(props) {
   return (
     <div
       className="flex justify-center items-center overflow-x-scroll scroll-smooth relative"
-      id="carousel3"
+      id="caraousel2"
       style={{ width : "100%", height: "500px" }}
       ref={slider}
     >
       {props.children}
     </div>
-  );
+  ); 
 }
 
 export default function Populars() {
   
   const dispatch = useDispatch();
-  const { loading , movies , peoples , series  } = useSelector((state)=>state.popular);
+  const { loading , movies } = useSelector((state)=>state.popular);
    
-
-
   useEffect(()=>{
       fetchApi('/movie/popular?language=en-US&page=1').then((res)=>{
           // console.log("popular Movies ===>",res);
-          dispatch(setMovies(res.results))
+          dispatch(getMovies(res.results))
       });
-      fetchApi('/person/popular?language=en-US&page=1').then((res)=>{
-        // console.log("popular Peoples ===>",res);
-        dispatch(setPeople(res.results))
-    }) 
   },[dispatch])
 
   return (
   
       <DraggableCarousel>
         {/*  slider */}
-        <div className="w-full h-full p-2 flex justify-start items-center relative">
+        <div className="w-full h-full flex justify-start items-center relative">
           {loading ? (
             <Loader />
           ) : (

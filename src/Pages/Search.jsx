@@ -1,13 +1,13 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-
 const Search = () => {
-  let params = useParams();
   return (
-    <div className='h-screen w-screen flex justify-center items-center bg-slate-900 text-white' >
-      Search {JSON.stringify(params)}
-    </div>
-  )
-}
+    <div className="w-screen h-screen flex flex-col justify-start items-center bg-black text-white p-1">
+      
+      <div>
 
-export default Search
+      </div>
+
+    </div>
+  );
+};
+
+export default Search;

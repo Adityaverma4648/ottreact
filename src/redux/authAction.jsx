@@ -61,36 +61,6 @@ export const userLogin = createAsyncThunk(
   }
 )
 
-export const logOut = createAsyncThunk(
-  'auth/logout',
-  async ({ token }, { rejectWithValue }) => {
-    try {
-      // configure header's Content-Type as JSON
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-      const { data } = await axios.post(
-        `${backendURL}/auth/logout`,
-        { token },
-        config
-      )
-      // store user's token in local storage
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      return data
-    } catch (error) {
-      // return custom error message from API if any
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message)
-      } else {
-        return rejectWithValue(error.message)
-      }
-    }
-  }
-)
-
 export const getUserDetails = createAsyncThunk(
   'auth/getUserDetails',
   async ({ token }, { rejectWithValue }) => {

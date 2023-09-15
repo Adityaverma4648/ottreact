@@ -10,30 +10,37 @@ const SavedWatchSlice = createSlice({
   name: 'savedWatch',
   initialState,
   reducers: {
-      addSaved: (state , action)=>{
-        const itemSaved = state.saved.find((item)=>
-          item.id === action.payload.id
-        )
-        if (itemSaved) {
-          itemSaved.quantity++
-        }else {
-          state.saved.push({ ...action.payload, quantity: 1 });
-        }
+      addSaved: (state, action) => {
+        const checkUnique = (x) => x.id === action.payload.id;      
+        if (state.saved.some(checkUnique)) {
+          return {
+            ...state,
+            saved: [...state.saved],
+          };
+        } else {
+          return {
+            ...state,
+            saved: [...state.saved, action.payload],
+          };
+        }  
       },
       removeItemWatchLater: (state, action) => {
         const removeItem = state.watchLater.filter((item) => item.id !== action.payload);
         state.watchLater = removeItem;
       },
-      addWatchLater:  (state , action)=>{
-
-        const itemWatchLater = state.watchLater.find((item)=>
-          item.id === action.payload.id
-        )
-        if (!itemWatchLater){
-           state.watchLater.length = state.watchLaterlength+1;
-           state.watchLater.push([ ...action.payload ]);
-           state.loading = false;
-          }
+      addWatchLater: (state, action) => {
+        const checkUnique = (x) => x.id === action.payload.id;      
+        if (state.watchLater.some(checkUnique)) {
+          return {
+            ...state,
+            watchLater: [...state.watchLater],
+          };
+        } else {
+          return {
+            ...state,
+            watchLater: [...state.watchLater, action.payload],
+          };
+        }  
       },
       removeItemSaved: (state, action) => {
         const removeItem = state.saved.filter((item) => item.id !== action.payload);
@@ -53,9 +60,7 @@ const SavedWatchSlice = createSlice({
   },
   
 })
-export const {addSaved , clearSaved } = SavedWatchSlice.actions;
-
-export const {addWatchLater , clearWatchLater } = SavedWatchSlice.actions;
+export const {addSaved , clearSaved, addWatchLater , clearWatchLater } = SavedWatchSlice.actions;
 
 
 export default SavedWatchSlice.reducer

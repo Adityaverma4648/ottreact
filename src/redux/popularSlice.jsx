@@ -12,15 +12,15 @@ const ProviderSlice = createSlice({
   name: 'popular',
   initialState,
   reducers: {
-    setMovies: (state , action)=>{
+    getMovies: (state , action)=>{
       state.movies = action.payload
       state.loading = false
     },
-    setPeople:(state , action)=>{
+    getPeople:(state , action)=>{
       state.people = action.payload
       state.loading = false
     },
-    setSeries:(state , action)=>{
+    getSeries:(state , action)=>{
       state.series = action.payload
       state.loading = false
     }
@@ -30,10 +30,10 @@ const ProviderSlice = createSlice({
   },
   
 })
-export const {setMovies} = ProviderSlice.actions;
+export const {getMovies} = ProviderSlice.actions;
 
-export const {setPeople} = ProviderSlice.actions;
+export const {getPeople} = ProviderSlice.actions;
 
-export const {setSeries} = ProviderSlice.actions;
+export const {getSeries} = ProviderSlice.actions;
 
 export default ProviderSlice.reducer

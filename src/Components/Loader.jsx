@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 import {FaUikit} from "react-icons/fa";
 
-const Loader = () => {
+const Loader = (props) => {
+  const [color, setColor] = useState("red");
+  useEffect(()=>{
+    if(props.color)
+      setColor(props.color);
+  },[props.color])
   return (
     <div className='w-full h-full flex justify-center items-center'>
-         <FaUikit color='red' className='animate-spin' />
+         <FaUikit color={color} className='animate-spin' />
     </div>
   )
 }

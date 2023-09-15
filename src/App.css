@@ -5,16 +5,18 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* #Navbar{
+  background: transparent;
+} */
 
 .glassMorphismNavbar{
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(2rem);
-  transition: all 0.6s ease-in-out;
+  background: linear-gradient(45deg,	rgba(255, 53, 94 ,0.8),  rgba(73, 151, 208 , 0.5) , 	rgba(255, 183, 213, 0.5) , 	rgb(250, 250, 55,0.8) );  
 }
 
-#shortContainer::-webkit-scrollbar ,#leftLeftContent::-webkit-scrollbar {
-   display: none;
+#Navbar:hover{ 
+  background: linear-gradient(45deg,	rgba(255, 53, 94 ,0.8),  rgba(73, 151, 208 , 0.5) , 	rgba(255, 183, 213, 0.5) , 	rgb(250, 250, 55,0.8) );
 }
+
 
 ::-webkit-scrollbar-thumb{
   background-color: brown
@@ -23,7 +25,18 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+#leftLeftContent::-webkit-scrollbar-track , #LiveStream::-webkit-scrollbar-track{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+#leftLeftContent::-webkit-scrollbar-thumb , #LiveStream::-webkit-scrollbar-thumb{
+    background-color: brown;
+}
 
+
+
+.hideScrollbar::-webkit-scrollbar , #discoverHome::-webkit-scrollbar,#caraousel::-webkit-scrollbar , #caraousel1::-webkit-scrollbar , #caraousel2::-webkit-scrollbar {
+  display: none;
+}
 .animate-shake{
   animation: shake 0.5s ease-in-out infinite;
 }

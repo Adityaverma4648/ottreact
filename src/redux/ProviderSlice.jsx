@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     loading : true,
     regions: [],
-    languages:[]
+    languages:[],
+    genre:[]
 };
 
 const ProviderSlice = createSlice({
@@ -14,8 +15,12 @@ const ProviderSlice = createSlice({
       state.regions = action.payload
       state.loading = false
     },
-    setLanguages:(state , action )=>{
+    getLanguages:(state , action )=>{
       state.languages = action.payload
+      state.loading = false
+    },
+    getGenre:(state , action )=>{
+      state.genre = action.payload
       state.loading = false
     }
   },
@@ -24,9 +29,6 @@ const ProviderSlice = createSlice({
   },
   
 })
-export const {getRegions} = ProviderSlice.actions;
-
-export const {setLanguages} = ProviderSlice.actions;
-
+export const {getRegions , getGenre , getLanguages} = ProviderSlice.actions;
 
 export default ProviderSlice.reducer;

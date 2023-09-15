@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react';
+import { useState , useEffect } from 'react';
 
 //  importing components 
 import Shorts from "./Shorts";
@@ -153,7 +153,7 @@ const HomeLeftContent = ({isAdmin}) => {
 
     <div className='lg:w-8/12 w-full lg:h-full md:h-screen h-screen p-2 rounded-t-3xl flex lg:flex-row flex-col justify-center items-center bg-gradient-to-b to-black from-slate-900 me-2 select-none'>
     
-     <div className='lg:w-9/12 w-full lg:h-full lg:overflow-y-hidden overflow-y-scroll h-4/6' id='leftLeftContent' >
+     <div className='lg:w-9/12 w-full lg:h-full overflow-y-scroll h-4/6' id='leftLeftContent' >
      <Shorts isAdmin={isAdmin} />
      <Category isAdmin={isAdmin} />
      <HomeDiscover />

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState , useRef , useEffect } from 'react';
+import { useState , useRef , useEffect } from 'react';
 // importing Pictures
 import categoryPic from "../assets/PAYOFF_EXAMPLES_01.jpg"; 
 
@@ -620,7 +620,7 @@ const LiveStream = () => {
   return (
     <>
     <div className="w-full flex flex-row justify-center items-center ">
-         <div className="w-full lg:h-32 h-12 flex lg:flex-col justify-between items-center ">
+         <div className="w-full lg:h-20 h-12 flex lg:flex-col justify-between items-center ">
             <div className='w-auto font-semibold text-white md:text-start text-center text-xl p-2'>
               Live Streams
             </div>
@@ -639,7 +639,7 @@ const LiveStream = () => {
          </div>
 
     </div>
-    <DraggableCarousel className='w-full flex lg:flex-col flex-row justify-start items-center lg:overflow-y-scroll lg:overflow-x-hidden overflow-x-scroll overflow-y-hidden scroll-smooth' id="liveStream">
+    <DraggableCarousel className='w-full flex lg:flex-col flex-row justify-start items-center lg:overflow-y-scroll lg:overflow-x-hidden overflow-x-scroll overflow-y-hidden scroll-smooth' id="LiveStream">
          <div className='lg:h-{150vh} md:h-{150vh} w-{150vw} flex lg:flex-col flex-row justify-start items-start transition-all ease-in-out delay-300'>
          {filterData.length !== 0 ? filterData?.map((d , index)=>{
             return <div key={index} className='w-full h-36 my-1 flex justify-between items-center p-2 select-none'>
