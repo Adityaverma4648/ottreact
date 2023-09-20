@@ -3,8 +3,6 @@ import {useParams} from "react-router-dom";
 const Genre = ({route}) => {
   
   const routeParams = useParams();
-
-
   const {id} = routeParams
 
   return (

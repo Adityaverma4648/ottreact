@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 // importig redux
 import { useDispatch, useSelector } from "react-redux";
 
-import { FaPlayCircle } from "react-icons/fa";
+import { FaRegPlayCircle } from "react-icons/fa";
 
 // imporitng actions
 import { getTopRated, getUpcoming, getPopular } from "../redux/MovieSlice";
 import { fetchApi } from "../utils/api";
+import { setCurrentlyPlaying } from "../redux/PlayerSlice";
 
 import Loader from "../Components/Loader";
 import DiscoverCard from "../Components/DiscoverCard";
@@ -111,14 +112,28 @@ const Movies = () => {
                   </div>
 
                   <button
-                    type="button"
-                    className="p-2 flex flex-col justify-center items-center text-white"
-                  >
-                    <FaPlayCircle size={45} />
-                  </button>
+                type="button"
+                onClick={() => {
+                  dispatch(
+                    setCurrentlyPlaying({
+                      id: describe.id,
+                      title: describe.title,
+                      overview: describe.overview,
+                      release_date: describe.releaseDate,
+                      image: describe.image,
+                    })
+                  );
+                }}
+              >
+                <FaRegPlayCircle
+                  size={35}
+                  color="white"
+                  className="my-4 mx-2"
+                />
+              </button>
                 </div>
 
-                <div className="flex-1 overflow-y-scroll  text-sm text-gray-300 p-2">
+                <div className="w-full flex-1 overflow-y-scroll text-sm text-gray-300 p-2 text-left flex justify-start items-center">
                   {describe.overview}
                 </div>
               </div>
@@ -131,7 +146,7 @@ const Movies = () => {
 
 
         {/*  movie filters */}
-        <div className="w-full md:h-14 h-28 p-4 flex md:flex-row flex-col justify-between items-center text-white">
+        <div className="w-full md:h-14 h-28 p-4 flex md:flex-row flex-col justify-between items-center text-white bg-gradient-to-b from-slate-900 to-transparent absolute top-0 z-10">
           <div className="w-full md:w-auto text-lg flex justify-start items-center">
             <select
               name="type"
@@ -210,7 +225,7 @@ const Movies = () => {
 
 
 {/*  movie grid collections */}
-        <div className="w-full flex flex-1 flex-wrap justify-center items-center overflow-y-scroll relative">
+        <div className="w-full flex flex-1 flex-wrap justify-center items-center overflow-y-scroll relative py-16">
           {loading ? (
             <Loader color="#fff" />
           ) : (

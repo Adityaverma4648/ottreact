@@ -189,17 +189,11 @@ const Shorts = () => {
   return (
     <div className=" flex flex-col justify-center items-center rounded-t-lg p-2 relative " style={{height : "250px"}} >
       {/* shorts heading animated */}
-      <div className="w-full p-2 relative z-30 flex justify-between items-center">
+      <div className="w-full p-2 relative z-30 flex justify-start items-center">
         <div className="text-lg flex justify-center items-center ">
           Explore Short Videos
         </div>
 
-        <button
-          className="border-0 flex justify-center items-center p-2 hover:animate-bounce transition-all ease-in hover:text-indigo-400"
-          onClick={addShortsModal}
-        >
-          Add shorts
-        </button>
       </div>
 
       {/*  slider */}

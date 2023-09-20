@@ -25,15 +25,7 @@ const ProviderSlice = createSlice({
       state.loading = false
     }
   },
-  extraReducers: {
-     
-  },
-  
 })
-export const {getMovies} = ProviderSlice.actions;
-
-export const {getPeople} = ProviderSlice.actions;
-
-export const {getSeries} = ProviderSlice.actions;
+export const {getMovies ,getPeople ,getSeries} = ProviderSlice.actions;
 
 export default ProviderSlice.reducer

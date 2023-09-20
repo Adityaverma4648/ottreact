@@ -65,17 +65,10 @@ function DraggableCarousel(props){
       slider.current.scrollLeft = scrollLeft.current - walk;
     }
      
-    function mouseEnter(e){
-      var carousel2 = document.getElementById('carousel2');
-      carousel2.classList.add("overflow-x-scroll")
-    }
-    function mouseOut(e){
-      var carousel2 = document.getElementById('carousel2');
-      carousel2.classList.remove("overflow-x-scroll")
-    }
+
 
 return (
-  <div className='md:w-full w-11/12 md:h-full h-full flex justify-start items-center overflow-hidden relative scroll-smooth ' onMouseEnter={mouseEnter} onMouseLeave={mouseOut}  ref={slider} id='caraousel1' >
+  <div className='md:w-full w-11/12 md:h-full h-full flex justify-start items-center overflow-hidden relative scroll-smooth '  ref={slider} id='caraousel1' >
       {props.children}
    </div>
 )

@@ -79,7 +79,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`w-screen h-20 z-50 flex justify-center items-center fixed top-0 transition-all delay-200 ease-in-out ${visible ? "backdrop-blur-md" : "backdrop-blur-0" } hover:backdrop-blur-md`}
+      className={`w-screen h-20 z-50 flex justify-center items-center fixed top-0 ${visible ? "backdrop-blur-md" : "backdrop-blur-0" } hover:backdrop-blur-md`}
       id="Navbar"
     >
       <div className="lg:w-10/12 md:w-11/12 w-full h-full flex justify-between items-center px-4 text-white bg-transparent">
@@ -95,17 +95,22 @@ const Navbar = () => {
               <Link to="/home">Home</Link>
             </li>
 
-            <li className="mx-4">
+            {/* <li className="mx-4">
               <Link to="/search">Search</Link>
+            </li> */}
+            <li className="mx-4">
+              <Link to="/movies">Movies</Link>
+            </li>
+
+            <li className="mx-4">
+              <Link to="/tvshows">TVShows</Link>
             </li>
 
             <li className="mx-4">
               <Link to="/watchlater">WatchLater</Link>
             </li>
 
-            <li className="mx-4">
-              <Link to="/movies">Movies</Link>
-            </li>
+            
 
             <li className="mx-4">
               <Link to="/saved">Saved</Link>
@@ -116,6 +121,7 @@ const Navbar = () => {
         <div className="flex flex-row">
           <input
             className="border border-white text-white bg-transparent rounded-lg p-2 outline-none select-none placeholder-white"
+            name="search"
             placeholder="Search Movies, Shows..."
             onChange={(e) => {
               navigate("/search", { data: e.target.value });
@@ -146,15 +152,6 @@ const Navbar = () => {
 
             {userInfo && userToken ? (
               <div className="flex flex-row justify-center items-center">
-                <Link
-                  to="/setting"
-                  type="button"
-                  className="text-white text-sm mx-2 flex flex-col justify-center items-center"
-                >
-                  <FaCog className="text-white" />
-                  Setting
-                </Link>
-
                 <button
                   type="button"
                   className="text-red-500 mx-2 flex flex-col justify-center items-center"

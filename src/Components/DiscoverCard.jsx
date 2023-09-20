@@ -166,7 +166,7 @@ const DiscoverCard = (props) => {
             />
           ) : (
             <div
-              className="w-72 flex justify-center items-center text-white bg-red-900"
+              className="w-72 flex justify-center items-center text-white"
               style={{ height: "475px" }}
             >
               Image Not Found

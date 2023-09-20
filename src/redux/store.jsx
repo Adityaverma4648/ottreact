@@ -22,6 +22,7 @@ import SavedWatchSlice from "./SavedWatchSlice";
 import SearchSlice from "./SearchSlice";
 import MovieSlice from './MovieSlice';
 import PlayerSlice from './PlayerSlice';
+import TVShowsSlice from "./TVShowsSlice.jsx";
 
 const persistConfig = {
   key: 'root',
@@ -36,7 +37,8 @@ const rootReducer = combineReducers({
     popular : popularSlice,
     savedWatch : SavedWatchSlice,
     search : SearchSlice,
-    movie : MovieSlice
+    movie : MovieSlice,
+    tvshows : TVShowsSlice,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer )

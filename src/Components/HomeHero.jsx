@@ -8,11 +8,6 @@ const HomeHero = () => {
     <div className=' my-2 text-sm text-gray-400'>
       Introducing the ultimate movie streaming experience! With our platform, you have access to a vast library of the latest and greatest films and TV shows, all in one place. 
     </div>
-    <div className=' my-2'>
-      <button type='button' className='bg-red-500 rounded-md p-2' >
-         Watch Free
-      </button>
-    </div>
     </div>
   )
 }

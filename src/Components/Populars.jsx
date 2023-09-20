@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // importing fetchApi
 import{fetchApi} from "../utils/api";
 
 //  importing redux
 import {useDispatch , useSelector} from "react-redux";
-import {getMovies , getPeople } from "../redux/popularSlice";
+import {getMovies , getPeople, getSeries } from "../redux/popularSlice";
 
 
 //  importing components
@@ -79,17 +79,31 @@ function DraggableCarousel(props) {
   ); 
 }
 
-export default function Populars() {
+export default function Populars({type}) {
   
   const dispatch = useDispatch();
-  const { loading , movies } = useSelector((state)=>state.popular);
+  const [array, setArray] = useState([])
+  const { loading , movies , series , people } = useSelector((state)=>state.popular);
    
   useEffect(()=>{
       fetchApi('/movie/popular?language=en-US&page=1').then((res)=>{
           // console.log("popular Movies ===>",res);
-          dispatch(getMovies(res.results))
+          dispatch(getMovies(res))
       });
+      fetchApi('/tv/popular?language=en-US&page=1').then((res)=>{
+        console.log("popular Series===>",res);
+        dispatch(getSeries(res))
+    });
+
   },[dispatch])
+
+  useEffect(()=>{
+    if(type === "movies"){
+      setArray(movies);
+    }else if(type === "series"){
+      setArray(series);
+    }
+  },[array, movies, series,type]);
 
   return (
   
@@ -99,7 +113,7 @@ export default function Populars() {
           {loading ? (
             <Loader />
           ) : (
-            movies?.map((d, indx) => {
+            array.results?.map((d, indx) => {
               return (
                 <PopularCard
                   key={indx}
@@ -115,11 +129,6 @@ export default function Populars() {
           )}
         </div>
 
-        <div className="">
-          {/* <div className="backdrop-blur-md bg-white/20 py-2 px-4 m-4">
-            Popular Movies
-          </div> */}
-        </div>
       </DraggableCarousel>
 
   );
