@@ -1,10 +1,5 @@
-import React, { useState , useEffect } from 'react'
+import { useEffect } from 'react'
 
-// fetchApi
-import {fetchApi} from "../utils/api";
-
-// importing redux
-import { useSelector , useDispatch } from "react-redux";
 import { useNavigate } from 'react-router';
 
 const Welcome = () => {
@@ -13,9 +8,13 @@ const Welcome = () => {
   const navigate = useNavigate();
 
    useEffect(()=>{
-        setInterval(()=>{
+        const interval = setInterval(()=>{
               navigate("/home")
-        },3000)
+        },3000);
+
+        return()=>{
+          clearInterval(interval);
+        }
    },[navigate])
 
 

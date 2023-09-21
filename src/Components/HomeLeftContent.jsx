@@ -8,62 +8,14 @@ import People from "./People";
 import HomeDiscover from "./HomeDiscover";
 import Category from "./Category";
 
-const intialState = {
-  title: "",
-  caption: "",
-  fileUrl: "",
-};
-
 const HomeLeftContent = ({ isAdmin }) => {
   const [token, setToken] = useState("");
-  const [formValue, setFormValue] = useState(intialState);
-  const [file, setFile] = useState("");
-
-  const { title, caption, fileUrl } = formValue;
-
-  const onInputChange = (e) => {
-    let { name, value } = e.target;
-    setFormValue({ ...formValue, [name]: value });
-  };
-
-  const onFileChange = (file) => {
-    console.log(file);
-  };
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
   }, []);
 
-  const removeModal = () => {
-    var modal = document.getElementById("modal");
-    modal.classList.add("hidden");
-  };
-
-  const removeCategoryModal = () => {
-    var modal = document.getElementById("categoryModal");
-    modal.classList.add("hidden");
-  };
-
-  //    modal funtions ends here
-
-  const handleShortSubmit = async (e) => {
-    e.preventDefault();
-    console.log(formValue, token);
-    //      await axios.post("http://localhost:7000/shorts/add",formValue ,{
-    //           method : "POST" ,
-    //           headers:{
-    //           "Content-Type" : "application/json",
-    //           "Authorization" : "Bearer " + token
-    //           },
-    //       body : JSON.stringify(formValue),
-    //     })
-    //     .then((res) => {
-    //       console.log(res);
-    //      })
-    //     .catch((err)=>{
-    //        console.log(err);
-    //     })
-  };
+ 
 
   return (
     <>

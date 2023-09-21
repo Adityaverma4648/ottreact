@@ -1,4 +1,5 @@
-import React , {useEffect , useRef} from "react";
+/* eslint-disable react/prop-types */
+import {useEffect , useRef} from "react";
 import { Link } from "react-router-dom";
 
 //  importing componenets
@@ -82,10 +83,6 @@ return (
 
 
 const Shorts = () => {
-  const addShortsModal = () => {
-    var modal = document.getElementById("modal");
-    modal.classList.toggle("hidden");
-  };
 
   const shorts = [
     {
