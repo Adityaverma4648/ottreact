@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 //  import Components
@@ -22,30 +22,32 @@ import TVShows from "./Pages/TVShows";
 function App() {
   return (
       <BrowserRouter>
+        <Router>
         <Navbar />
         <Routes>
           <Route path="/" element={<Welcome />} initial></Route>
-          <Route path="home" element={<Home />} exact></Route>
-          <Route path="login" element={<Login />} exact></Route>
-          <Route path="register" element={<Register />} exact></Route>
+          <Route path="/home" element={<Home />} exact></Route>
+          <Route path="/login" element={<Login />} ></Route>
+          <Route path="/register" element={<Register />}></Route>
 
           {/*  single Shorts */}
-          <Route path="shorts/:id" element={<Shorts />}></Route>
+          <Route path="/shorts/:id" element={<Shorts />}></Route>
 
           {/*  single Genre */}
-          <Route path="genre/:id" element={<Genre />}></Route>
+          <Route path="/genre/:id" element={<Genre />}></Route>
 
           {/* singlePeople */}
           <Route path="/people/:id" element={<PeopleUnique />}></Route> 
 
 
-          <Route path="search" element={<Search />}></Route>
-          <Route path="watchlater" element={<WatchLater />}></Route>
-          <Route path="movies" element={<Movies />}></Route>
-          <Route path="tvshows" element={<TVShows />}></Route>
-          <Route path="saved" element={<Saved />}></Route>
+          <Route path="/search" element={<Search />}></Route>
+          <Route path="/watchlater" element={<WatchLater />}></Route>
+          <Route path="/movies" element={<Movies />}></Route>
+          <Route path="/tvshows" element={<TVShows />}></Route>
+          <Route path="/saved" element={<Saved />}></Route>
 
         </Routes>
+        </Router>
       </BrowserRouter>
    
   );
