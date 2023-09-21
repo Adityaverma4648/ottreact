@@ -61,7 +61,7 @@ const TVShows = () => {
   
     //  fetch useEffects
     useEffect(() => {
-      fetchApi("/popular?language=en-US&page=" + page).then((res) => {
+      fetchApi("tv/popular?language=en-US&page=" + page).then((res) => {
         dispatch(getPopular(res));
       });
 

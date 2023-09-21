@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addWatchLater, addSaved } from "../redux/SavedWatchSlice";
 import { setCurrentlyPlaying } from "../redux/PlayerSlice";
 
-const DiscoverCard = (props) => {
+const DiscoverCard = (props , {handleDescribe}) => {
   const dispatch = useDispatch();
 
   const { userInfo, userToken } = useSelector((state) => state.auth);

@@ -35,6 +35,6 @@ const TVShowsSlice = createSlice({
   },
   
 })
-export const {getPopular , getUpcoming , getOnAir ,getTopRated ,getAll } = TVShowsSlice.actions;
+export const {getPopular , getUpcoming , getOnAir ,getTopRated } = TVShowsSlice.actions;
 
 export default TVShowsSlice.reducer;
