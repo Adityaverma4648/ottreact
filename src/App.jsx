@@ -22,7 +22,7 @@ import TVShows from "./Pages/TVShows";
 function App() {
   return (
       <BrowserRouter>
-        <Router>
+ 
         <Navbar />
         <Routes>
           <Route path="/" element={<Welcome />} initial></Route>
@@ -47,7 +47,7 @@ function App() {
           <Route path="/saved" element={<Saved />}></Route>
 
         </Routes>
-        </Router>
+    
       </BrowserRouter>
    
   );

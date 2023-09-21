@@ -9,14 +9,14 @@ import { useNavigate } from 'react-router';
 
 const Welcome = () => {
   
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
    useEffect(()=>{
         setInterval(()=>{
               navigate("/home")
         },3000)
-   },[])
+   },[navigate])
 
 
 
