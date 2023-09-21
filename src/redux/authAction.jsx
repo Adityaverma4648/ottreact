@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-const backendURL = 'http://127.0.0.1:7000'
+const backendURL = 'https://ottbackend.onrender.com'
 
 export const registerUser = createAsyncThunk(
   'auth/register',
