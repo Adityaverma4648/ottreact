@@ -39,6 +39,8 @@ const TVShows = () => {
       } else if(selected === "onAir"){
         setArray(onAir);
       }
+
+      console.log(array);
     }, [
       selected,
       array,
@@ -84,7 +86,6 @@ const TVShows = () => {
           upcoming.results[Math.floor(Math.random() * upcoming.results.length)]
         );
       }
-      console.log(describe);
     }, [describe, upcoming]);
   
     const handleDescribe = (value) => {
@@ -245,11 +246,13 @@ const TVShows = () => {
                   <DiscoverCard
                     key={index}
                     id={d.id}
+                    genre_id = {d.genre_ids}
                     overview={d.overview}
                     releaseDate={d.release_date}
-                    title={d.title}
+                    title={d.title || d.name}
                     image={d.poster_path}
                     handleDescribe={handleDescribe}
+                    origin={d.origin_country}
                   />
                 );
               })

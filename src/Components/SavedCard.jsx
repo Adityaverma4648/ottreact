@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { FaHeart, FaRegCalendarPlus, FaRegPlayCircle } from "react-icons/fa";
+import {  FaRegCalendarPlus, FaRegPlayCircle, FaTrash } from "react-icons/fa";
 
 // importing redux
 import { useDispatch, useSelector } from "react-redux";
-import { addWatchLater, addSaved } from "../redux/SavedWatchSlice";
+import { addWatchLater, removeItemSaved } from "../redux/SavedWatchSlice";
 import { setCurrentlyPlaying } from "../redux/PlayerSlice";
 
-const DiscoverCard = (props) => {
+const SavedCard = (props) => {
   const dispatch = useDispatch();
 
   const { userInfo, userToken } = useSelector((state) => state.auth);
@@ -81,7 +81,7 @@ const DiscoverCard = (props) => {
               <button
                 type="button"
                 className={`w-full p-2 flex flex-row justify-end items-center text-lg m-1 cursor-pointer ${
-                  existsInSaved ? "text-green-400" : "text-white"
+                  existsInSaved ? "text-red-400" : "text-white"
                 }`}
                 id="saved"
                 onMouseLeave={() => {
@@ -93,7 +93,7 @@ const DiscoverCard = (props) => {
                 onClick={() => {
                   if (userInfo && userToken) {
                     dispatch(
-                      addSaved({
+                      removeItemSaved({
                         id: props.id,
                         title: props.title,
                         overview: props.overview,
@@ -111,10 +111,10 @@ const DiscoverCard = (props) => {
                     className="mx-1 transition-opacity ease-linear delay-700"
                     style={{ fontSize: "10px" }}
                   >
-                    {existsInSaved ? "done!" : "Add To Saved"}
+                    {existsInSaved ? "delete!" : "Add To Saved"}
                   </span>
                 )}
-                <FaHeart size={20} />
+                <FaTrash size={20} />
               </button>
             </div>
 
@@ -178,4 +178,4 @@ const DiscoverCard = (props) => {
   );
 };
 
-export default DiscoverCard;
+export default SavedCard;

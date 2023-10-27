@@ -92,7 +92,6 @@ const People = () => {
   useEffect(() => {
     fetchApi("/person/popular?language=en-US&page=1").then((res) => {
       dispatch(getPeople(res.results));
-      console.log(res);
     });
   }, [dispatch]);
 

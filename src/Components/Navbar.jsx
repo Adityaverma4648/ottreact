@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 //  importing icons
-import { FaCog, FaLanguage, FaSignOutAlt } from "react-icons/fa";
+import { FaLanguage, FaSignOutAlt } from "react-icons/fa";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -77,9 +77,12 @@ const Navbar = () => {
     dispatch(clearSaved());
   };
 
+
   return (
     <div
-      className={`w-screen h-20 z-50 flex justify-center items-center fixed top-0 ${visible ? "backdrop-blur-md" : "backdrop-blur-0" } hover:backdrop-blur-md`}
+      className={`w-screen h-20 z-50 flex justify-center items-center fixed top-0 ${
+        visible ? "backdrop-blur-md" : "backdrop-blur-0"
+      } hover:backdrop-blur-md`}
       id="Navbar"
     >
       <div className="lg:w-10/12 md:w-11/12 w-full h-full flex justify-between items-center px-4 text-white bg-transparent">
@@ -94,10 +97,6 @@ const Navbar = () => {
             <li className="mx-4">
               <Link to="/home">Home</Link>
             </li>
-
-            {/* <li className="mx-4">
-              <Link to="/search">Search</Link>
-            </li> */}
             <li className="mx-4">
               <Link to="/movies">Movies</Link>
             </li>
@@ -109,8 +108,6 @@ const Navbar = () => {
             <li className="mx-4">
               <Link to="/watchlater">WatchLater</Link>
             </li>
-
-            
 
             <li className="mx-4">
               <Link to="/saved">Saved</Link>
@@ -135,12 +132,13 @@ const Navbar = () => {
                 name="languages"
                 id="languages"
                 className="w-24 bg-transparent text-sm mx-2 flex flex-col justify-center items-center select-none outline-none cursor-pointer"
+                value={language.english_name}
                 onChange={(e) => {
                   setLanguage(e.target.value);
                 }}
               >
                 {languages &&
-                  languages?.map((d, index) => {
+                  languages.filter(item => item.iso_639_1 !== "xx")?.map((d, index) => {
                     return (
                       <option className="text-black p-2" key={index} value={d}>
                         {d.english_name}({d.iso_639_1})

@@ -25,8 +25,8 @@ const SavedWatchSlice = createSlice({
         }  
       },
       removeItemWatchLater: (state, action) => {
-        const removeItem = state.watchLater.filter((item) => item.id !== action.payload);
-        state.watchLater = removeItem;
+        const updatedData = state.watchLater.filter((item) => item.id !== action.payload.id);
+          state.watchLater = updatedData; 
       },
       addWatchLater: (state, action) => {
         const checkUnique = (x) => x.id === action.payload.id;      
@@ -43,8 +43,8 @@ const SavedWatchSlice = createSlice({
         }  
       },
       removeItemSaved: (state, action) => {
-        const removeItem = state.saved.filter((item) => item.id !== action.payload);
-        state.saved = removeItem;
+        const updatedData = state.saved.filter((item) => item.id !== action.payload.id);
+        state.saved = updatedData;
       },
       clearWatchLater: (state)=>{ 
         state.watchLater = initialState.watchLater;
@@ -60,7 +60,7 @@ const SavedWatchSlice = createSlice({
   },
   
 })
-export const {addSaved , clearSaved, addWatchLater , clearWatchLater } = SavedWatchSlice.actions;
+export const {addSaved , clearSaved, addWatchLater , removeItemWatchLater , removeItemSaved , clearWatchLater } = SavedWatchSlice.actions;
 
 
 export default SavedWatchSlice.reducer

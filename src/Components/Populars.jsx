@@ -87,11 +87,9 @@ export default function Populars({type}) {
    
   useEffect(()=>{
       fetchApi('/movie/popular?language=en-US&page=1').then((res)=>{
-          // console.log("popular Movies ===>",res);
           dispatch(getMovies(res))
       });
       fetchApi('/tv/popular?language=en-US&page=1').then((res)=>{
-        console.log("popular Series===>",res);
         dispatch(getSeries(res))
     });
 

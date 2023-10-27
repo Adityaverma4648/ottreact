@@ -3,10 +3,18 @@
   return (
     <div className="xl:w-80 lg:w-72 md:w-80 w-11/12 bg-gray-900 md:h-5/6 h-11/12 m-1 rounded-2xl overflow-hidden relative transition-transform transform" >
       <div
-        className="h-full min-w-full z-10 absolute flex flex-col justify-between items-center transition-all delay-150 hover:bg-gradient-to-t hover:from-black/60 hover:to-red-500/40 p-2"
+        className="h-full min-w-full z-10 absolute flex flex-col justify-end items-start transition-all delay-150 bg-gradient-to-t from-black/50 to-red-500/20 p-2"
         id="gradient"
       >
-          
+          <span className="text-xl" >
+          {props.title}
+          </span>
+          <span className="text-red-500" >
+          {props.type}
+          </span>
+          <span className="" >
+          origin country - {props.origin}
+          </span>
       </div>
 
       <div className="min-w-full h-full relative flex justify-center items-center overflow-hidden">

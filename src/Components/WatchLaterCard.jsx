@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { FaHeart, FaRegCalendarPlus, FaRegPlayCircle } from "react-icons/fa";
+import { FaHeart, FaRegPlayCircle, FaTrash } from "react-icons/fa";
 
 // importing redux
 import { useDispatch, useSelector } from "react-redux";
-import { addWatchLater, addSaved } from "../redux/SavedWatchSlice";
+import { removeItemWatchLater, addSaved } from "../redux/SavedWatchSlice";
 import { setCurrentlyPlaying } from "../redux/PlayerSlice";
 
-const DiscoverCard = (props) => {
+const WatchLaterCard = (props) => {
   const dispatch = useDispatch();
 
   const { userInfo, userToken } = useSelector((state) => state.auth);
@@ -42,7 +42,7 @@ const DiscoverCard = (props) => {
               <button
                 type="button"
                 className={`w-full p-2 flex flex-row justify-end items-center text-lg m-1 cursor-pointer ${
-                  existsInWatchLater ? "text-green-400" : "text-white"
+                  existsInWatchLater ? "text-red-400" : "text-white"
                 }`}
                 onMouseOver={() => {
                   setToolkit("watch");
@@ -53,7 +53,7 @@ const DiscoverCard = (props) => {
                 onClick={() => {
                   if (userInfo && userToken) {
                     dispatch(
-                      addWatchLater({
+                      removeItemWatchLater({
                         id: props.id,
                         title: props.title,
                         overview: props.overview,
@@ -71,11 +71,11 @@ const DiscoverCard = (props) => {
                     className="mx-1 transition-opacity ease-linear delay-700"
                     style={{ fontSize: "10px" }}
                   >
-                    {existsInWatchLater ? "done!" : "Add To Watch Later"}
+                    {existsInWatchLater ? "remove!" : "Add To Watch Later"}
                   </span>
                 )}
 
-                <FaRegCalendarPlus size={20} />
+                <FaTrash size={20} />
               </button>
 
               <button
@@ -178,4 +178,4 @@ const DiscoverCard = (props) => {
   );
 };
 
-export default DiscoverCard;
+export default WatchLaterCard;

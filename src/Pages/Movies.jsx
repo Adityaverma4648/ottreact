@@ -76,7 +76,6 @@ const Movies = () => {
         upcoming.results[Math.floor(Math.random() * upcoming.results.length)]
       );
     }
-    console.log(describe);
   }, [describe, upcoming]);
 
   const handleDescribe = (value) => {

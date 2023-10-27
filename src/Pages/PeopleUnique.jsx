@@ -35,7 +35,7 @@ const PeopleUnique = ({ route }) => {
           </div>
 
           <div className="lg:w-10/12 md:w-11/12 w-full h-2/3 flex flex-col justify-center items-center bg-gradient-to-b from-slate-900 to-black rounded-t-3xl overflow-hidden relative ">
-            <div className="w-full h-full lg:flex-row flex-col flex-wrap justify-center items-center relative overflow-y-scroll">
+            <div className="w-full h-full lg:flex-row flex-col flex-wrap justify-center items-center relative">
               {/* profile Image */}
               <div className="min-w-1/4 h-full flex flex-col justify-center items-center md:absolute md:left-0 bg-gradient-to-b from-slate-900 to-black z-10 bg-yellow-400">
                 <div className="h-full w-full flex flex-col justify-center items-center relative ">
@@ -58,13 +58,18 @@ const PeopleUnique = ({ route }) => {
                 </div>
               </div>
 
-              <div className="w-full h-full flex md:justify-end justify-center items-end relative md:py-0 py-16">
-                <div className="w-3/4 h-full flex flex-wrap justify-center items-center">
+              <div className="w-full h-full flex flex-col md:justify-end justify-center items-end relative md:py-0 py-16">
+
+                <div className="h-1/5 w-3/4 flex lg:justify-start justify-end p-2 items-center text-white text-xl " >
+                    People know him for 
+                </div>
+
+                <div className="w-3/4 h-4/5 flex flex-wrap justify-center items-center bg-red-900 lg:overflow-y-hidden overflow-y-scroll">
                   {data[0].known_for?.map((d, index) => {
                     return (
                       <PeopleCard
                         key={index}
-                        name={d.name}
+                        title={d.title}
                         image={d.backdrop_path}
                         type={d.media_type}
                         releaseDate={d.first_air_date}
