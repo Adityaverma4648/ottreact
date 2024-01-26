@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
-import {useEffect , useRef} from "react";
+import {useEffect, useState , useRef} from "react";
 import { Link } from "react-router-dom";
 
 //  importing componenets
 import ShortsCard from "./ShortsCard";
+import ShortsModal from "./ShortsModal";
 
 //  demo file import
 import video from "../assets/test.mp4";
+import { FaPlus } from "react-icons/fa";
 
 
 function DraggableCarousel(props){
@@ -182,13 +184,39 @@ const Shorts = () => {
       comments: [],
     },
   ];
+  const [visibility, setVisibility] = useState(false)
 
   return (
+    <>
+    {/*  shorts add modal components */}
+    {visibility && 
+    <div className="h-screen w-screen flex justify-center items-center fixed top-0 left-0 z-[99999999999999999999]">
+      
+      <div className='h-full w-full flex justify-center items-center absolute bg-black/80' 
+      onClick={(e)=>{
+        setVisibility(!visibility);
+      }}
+      ></div>
+
+      {/*  form UI */}
+      <ShortsModal visibility={visibility} />
+    </div>}
+
+    {/* shorts parent div */}
     <div className=" flex flex-col justify-center items-center rounded-t-lg p-2 relative " style={{height : "250px"}} >
       {/* shorts heading animated */}
-      <div className="w-full p-2 relative z-30 flex justify-start items-center">
+      <div className="w-full p-2 relative z-30 flex justify-between  items-center">
         <div className="text-lg flex justify-center items-center ">
           Explore Short Videos
+        </div>
+
+        <div className="text-white text-lg flex justify-center items-center"
+         onClick={(e)=>{
+           setVisibility(!visibility);
+         }}
+        >
+           Add Shorts
+           <FaPlus className="mx-2" />
         </div>
 
       </div>
@@ -214,6 +242,7 @@ const Shorts = () => {
         
       </div>
     </div>
+    </>
   );
 };
 

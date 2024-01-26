@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 import homeHero from "../Img/homeHero.jpeg";
-``;
 //  components
 import HomeHero from "../Components/HomeHero";
 import HomeLeftContent from "../Components/HomeLeftContent";

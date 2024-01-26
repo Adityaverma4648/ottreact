@@ -131,20 +131,20 @@ const Navbar = () => {
               <select
                 name="languages"
                 id="languages"
-                className="w-24 bg-transparent text-sm mx-2 flex flex-col justify-center items-center select-none outline-none cursor-pointer"
+                className="w-24 bg-transparent text-sm mx-2 flex flex-col justify-center items-center select-none outline-none cursor-pointer text-center"
                 value={language.english_name}
                 onChange={(e) => {
                   setLanguage(e.target.value);
                 }}
               >
-                {languages &&
-                  languages.filter(item => item.iso_639_1 !== "xx")?.map((d, index) => {
+                {/* {languages &&
+                  languages?.filter(item => item.iso_639_1 !== "xx")?.map((d, index) => {
                     return (
                       <option className="text-black p-2" key={index} value={d}>
                         {d.english_name}({d.iso_639_1})
                       </option>
                     );
-                  })}
+                  })} */}
               </select>
             </div>
 
